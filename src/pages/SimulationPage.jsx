@@ -9,7 +9,7 @@ const SimulationPage = () => {
     target: 1500,
     drawdown: -1500,
     oddsArray: [1, 2],
-    betAmount: 200,
+    betAmount: 100,
     oddsWin: 0.4,
     sample: 1,
     numberOfRounds: 1,
@@ -42,7 +42,10 @@ const SimulationPage = () => {
           <label>startingMoney</label>
           <input
             onChange={(e) =>
-              setTest((prev) => ({ ...prev, startingMoney: e.target.value }))
+              setTest((prev) => ({
+                ...prev,
+                startingMoney: Number(e.target.value),
+              }))
             }
             value={test.startingMoney}
           />
@@ -102,17 +105,21 @@ const SimulationPage = () => {
           />
         </div>
       </div>
-      <div>
-        <button onClick={resultHandler}>Generate</button>
-        <button onClick={() => addTradesHandler(1)}>add</button>
+      <div className={classes.buttons_container}>
+        <button style={{ padding: '6px' }} onClick={resultHandler}>
+          Generate
+        </button>
+        <button style={{ padding: '6px' }} onClick={() => addTradesHandler(1)}>
+          Add
+        </button>
       </div>
-      {test.account !== 'live' && <span>number of pass: {countPass} </span>}
+      {/* {test.account !== 'live' && <span>number of pass: {countPass} </span>}
       {result.length > 0 && (
         <div className={classes.description_container}>
           <span>number of fail: {countFail} </span>
           <span>not finish: {test.numberOfRounds - countFail - countPass}</span>
         </div>
-      )}
+      )} */}
 
       {test.account !== 'live' && (
         <span>
@@ -123,12 +130,14 @@ const SimulationPage = () => {
       {result.map((array, index) => (
         <span
           key={index}
-          style={{ border: '1px solid', padding: '4px' }}
-          //   style={{
-          //     color: `${
-          //       item >= test.startingMoney || item === 'PASS' ? 'green' : 'red'
-          //     }`,
-          //   }}
+          style={{
+            border: '1px solid',
+            padding: '4px',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            width: '80%',
+          }}
         >
           {array.map((trade, index) => (
             <span
@@ -140,14 +149,24 @@ const SimulationPage = () => {
               {/* {trade.isWin ? 'win' : 'lose'} */}
               <span
                 style={{
-                  color: trade.money >= 0 ? 'green' : 'red',
+                  color: trade.isWin ? 'green' : 'red',
                 }}
               >
-                {trade.money}
+                {trade.isWin ? 'W' : 'L'}
               </span>
               {'  '}
             </span>
           ))}
+          <span
+            style={{
+              color: array[array.length - 1].money >= 0 ? 'green' : 'red',
+              fontWeight: 'bold',
+              fontSize: '20px',
+              marginLeft: '16px',
+            }}
+          >
+            {array[array.length - 1].money}
+          </span>
         </span>
       ))}
     </div>

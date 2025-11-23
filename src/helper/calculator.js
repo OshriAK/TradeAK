@@ -82,10 +82,6 @@ export const addMoreTrades = (obj) => {
         money: sample[sample.length - 1].money - oddsArray[0] * betAmount,
         isWin,
       });
-      // if (money <= drawdown) {
-      //   money = 'FAIL';
-      //   break;
-      // }
     }
     result[i] = [...sample];
   }

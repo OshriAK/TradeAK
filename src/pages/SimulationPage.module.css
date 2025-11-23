@@ -26,3 +26,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.buttons_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 16px;
+}
