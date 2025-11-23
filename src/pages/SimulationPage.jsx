@@ -17,19 +17,6 @@ const SimulationPage = () => {
     tradesToAdd: 1,
   });
 
-  // const test = {
-  //   startingMoney: 0,
-  //   target: 1500,
-  //   drawdown: -1500,
-  //   oddsArray: [1, 2],
-  //   betAmount: 200,
-  //   oddsWin: 0.45,
-  //   sample: 1,
-  //   numberOfRounds: 1,
-  //   account: 'live',
-  //   tradesToAdd: 1,
-  // };
-
   const resultHandler = () => {
     setResult(oddsCalculator(test));
   };
@@ -111,7 +98,7 @@ const SimulationPage = () => {
             onChange={(e) =>
               setTest((prev) => ({ ...prev, numberOfRounds: e.target.value }))
             }
-            value={test.numberOfRoundsit }
+            value={test.numberOfRounds}
           />
         </div>
       </div>
