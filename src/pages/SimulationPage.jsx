@@ -12,8 +12,8 @@ const SimulationPage = () => {
     oddsArray: [1, 2],
     betAmount: 200,
     oddsWin: 0.45,
-    sample: 66,
-    numberOfRounds: 10,
+    sample: 1,
+    numberOfRounds: 1,
     account: 'live',
     tradesToAdd: 1,
   };
