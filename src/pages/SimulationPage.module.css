@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.description_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  border: 1px solid;
+  padding: 8px;
+}

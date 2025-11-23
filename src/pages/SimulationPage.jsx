@@ -1,0 +1,93 @@
+import { useState } from 'react';
+import { addMoreTrades, oddsCalculator } from '../helper/calculator';
+import classes from './SimulationPage.module.css';
+
+const SimulationPage = () => {
+  const [result, setResult] = useState([]);
+
+  const test = {
+    startingMoney: 0,
+    target: 1500,
+    drawdown: -1500,
+    oddsArray: [1, 2],
+    betAmount: 200,
+    oddsWin: 0.45,
+    sample: 66,
+    numberOfRounds: 10,
+    account: 'live',
+    tradesToAdd: 1,
+  };
+
+  const resultHandler = () => {
+    setResult(oddsCalculator(test));
+  };
+
+  const addTradesHandler = (numberOfTradesToAdd) => {
+    test.prevResult = result;
+    test.tradesToAdd = numberOfTradesToAdd;
+    setResult([...addMoreTrades(test)]);
+  };
+
+  const countPass = result.reduce((count, item) => {
+    return item === 'PASS' ? count + 1 : count;
+  }, 0);
+
+  const countFail = result.reduce((count, item) => {
+    return item === 'FAIL' ? count + 1 : count;
+  }, 0);
+
+  return (
+    <div className={classes.main}>
+      <div>
+        <button onClick={resultHandler}>Generate</button>
+        <button onClick={() => addTradesHandler(1)}>add</button>
+      </div>
+      {test.account !== 'live' && <span>number of pass: {countPass} </span>}
+      {result.length > 0 && (
+        <div className={classes.description_container}>
+          <span>number of fail: {countFail} </span>
+          <span>not finish: {test.numberOfRounds - countFail - countPass}</span>
+        </div>
+      )}
+
+      {test.account !== 'live' && (
+        <span>
+          Success: {Number(100 - (countFail / countPass) * 100).toFixed(2)}%{' '}
+        </span>
+      )}
+
+      {result.map((array, index) => (
+        <span
+          key={index}
+          style={{ border: '1px solid', padding: '4px' }}
+          //   style={{
+          //     color: `${
+          //       item >= test.startingMoney || item === 'PASS' ? 'green' : 'red'
+          //     }`,
+          //   }}
+        >
+          {array.map((trade, index) => (
+            <span
+              key={index}
+              style={{
+                color: trade.isWin ? 'green' : 'red',
+              }}
+            >
+              {/* {trade.isWin ? 'win' : 'lose'} */}
+              <span
+                style={{
+                  color: trade.money >= 0 ? 'green' : 'red',
+                }}
+              >
+                {trade.money}
+              </span>
+              {'  '}
+            </span>
+          ))}
+        </span>
+      ))}
+    </div>
+  );
+};
+
+export default SimulationPage;
