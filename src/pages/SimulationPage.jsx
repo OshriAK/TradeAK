@@ -4,19 +4,31 @@ import classes from './SimulationPage.module.css';
 
 const SimulationPage = () => {
   const [result, setResult] = useState([]);
-
-  const test = {
+  const [test, setTest] = useState({
     startingMoney: 0,
     target: 1500,
     drawdown: -1500,
     oddsArray: [1, 2],
     betAmount: 200,
-    oddsWin: 0.45,
+    oddsWin: 0.4,
     sample: 1,
     numberOfRounds: 1,
     account: 'live',
     tradesToAdd: 1,
-  };
+  });
+
+  // const test = {
+  //   startingMoney: 0,
+  //   target: 1500,
+  //   drawdown: -1500,
+  //   oddsArray: [1, 2],
+  //   betAmount: 200,
+  //   oddsWin: 0.45,
+  //   sample: 1,
+  //   numberOfRounds: 1,
+  //   account: 'live',
+  //   tradesToAdd: 1,
+  // };
 
   const resultHandler = () => {
     setResult(oddsCalculator(test));
@@ -38,6 +50,71 @@ const SimulationPage = () => {
 
   return (
     <div className={classes.main}>
+      <div className={classes.inputs_container}>
+        <div className={classes.input_container}>
+          <label>startingMoney</label>
+          <input
+            onChange={(e) =>
+              setTest((prev) => ({ ...prev, startingMoney: e.target.value }))
+            }
+            value={test.startingMoney}
+          />
+        </div>
+        <div className={classes.input_container}>
+          <label>target</label>
+          <input
+            onChange={(e) =>
+              setTest((prev) => ({ ...prev, target: e.target.value }))
+            }
+            value={test.target}
+          />
+        </div>
+        <div className={classes.input_container}>
+          <label>drawdown</label>
+          <input
+            onChange={(e) =>
+              setTest((prev) => ({ ...prev, drawdown: e.target.value }))
+            }
+            value={test.drawdown}
+          />
+        </div>
+        <div className={classes.input_container}>
+          <label>betAmount</label>
+          <input
+            onChange={(e) =>
+              setTest((prev) => ({ ...prev, betAmount: e.target.value }))
+            }
+            value={test.betAmount}
+          />
+        </div>
+        <div className={classes.input_container}>
+          <label>oddsWin</label>
+          <input
+            onChange={(e) =>
+              setTest((prev) => ({ ...prev, oddsWin: e.target.value }))
+            }
+            value={test.oddsWin}
+          />
+        </div>
+        <div className={classes.input_container}>
+          <label>sample</label>
+          <input
+            onChange={(e) =>
+              setTest((prev) => ({ ...prev, sample: e.target.value }))
+            }
+            value={test.sample}
+          />
+        </div>
+        <div className={classes.input_container}>
+          <label>numberOfRounds</label>
+          <input
+            onChange={(e) =>
+              setTest((prev) => ({ ...prev, numberOfRounds: e.target.value }))
+            }
+            value={test.numberOfRoundsit }
+          />
+        </div>
+      </div>
       <div>
         <button onClick={resultHandler}>Generate</button>
         <button onClick={() => addTradesHandler(1)}>add</button>
