@@ -134,7 +134,7 @@ const SimulationPage = () => {
             border: '1px solid',
             padding: '4px',
             display: 'flex',
-            justifyContent: 'flex-start',
+            justifyContent: 'space-between',
             alignItems: 'center',
             width: '80%',
           }}
@@ -157,15 +157,18 @@ const SimulationPage = () => {
               {'  '}
             </span>
           ))}
-          <span
-            style={{
-              color: array[array.length - 1].money >= 0 ? 'green' : 'red',
-              fontWeight: 'bold',
-              fontSize: '20px',
-              marginLeft: '16px',
-            }}
-          >
-            {array[array.length - 1].money}
+          <span>
+            <span
+              style={{
+                color: array[array.length - 1].money >= 0 ? 'green' : 'red',
+                fontWeight: 'bold',
+                fontSize: '20px',
+                marginLeft: '16px',
+              }}
+            >
+              {array[array.length - 1].money}
+            </span>{' '}
+            <span style={{ fontSize: '11px' }}>({array.length})</span>
           </span>
         </span>
       ))}
