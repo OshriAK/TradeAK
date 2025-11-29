@@ -8,7 +8,7 @@ const SimulationPage = () => {
     startingMoney: 0,
     target: 1500,
     drawdown: -1500,
-    oddsArray: [1, 2],
+    rr: 2,
     betAmount: 100,
     oddsWin: 0.4,
     sample: 1,
@@ -84,6 +84,15 @@ const SimulationPage = () => {
               setTest((prev) => ({ ...prev, oddsWin: e.target.value }))
             }
             value={test.oddsWin}
+          />
+        </div>
+        <div className={classes.input_container}>
+          <label>R:R R:?</label>
+          <input
+            onChange={(e) =>
+              setTest((prev) => ({ ...prev, rr: e.target.value }))
+            }
+            value={test.rr}
           />
         </div>
         <div className={classes.input_container}>

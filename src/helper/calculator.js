@@ -3,7 +3,7 @@ export const oddsCalculator = (obj) => {
     startingMoney,
     target,
     drawdown,
-    oddsArray,
+    rr,
     betAmount,
     oddsWin,
     sample,
@@ -23,10 +23,10 @@ export const oddsCalculator = (obj) => {
       isWin = random <= oddsWin * 10 ? true : false;
 
       if (isWin) {
-        money = money + oddsArray[1] * betAmount;
+        money = money + rr * betAmount;
         allTrade.push({ money, isWin });
       } else {
-        money = money - oddsArray[0] * betAmount;
+        money = money - 1 * betAmount;
         allTrade.push({ money, isWin });
         if (money <= drawdown) {
           money = 'FAIL';
@@ -54,7 +54,7 @@ export const addMoreTrades = (obj) => {
     startingMoney,
     target,
     drawdown,
-    oddsArray,
+    rr,
     betAmount,
     oddsWin,
     sample,
@@ -74,12 +74,12 @@ export const addMoreTrades = (obj) => {
 
     if (isWin) {
       sample.push({
-        money: sample[sample.length - 1].money + oddsArray[1] * betAmount,
+        money: sample[sample.length - 1].money + rr * betAmount,
         isWin,
       });
     } else {
       sample.push({
-        money: sample[sample.length - 1].money - oddsArray[0] * betAmount,
+        money: sample[sample.length - 1].money - 1 * betAmount,
         isWin,
       });
     }
